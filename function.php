@@ -64,7 +64,7 @@ function task2()
             6
         ),
         "letters" => array('a',
-            'b',
+            'a',
             'c',
             'd'
         )
@@ -92,6 +92,31 @@ function task2()
     }
     $jsonFile1 = file_get_contents('output2.json');
     echo $jsonFile1;
+    echo '<br>';
+    echo '<br>';
+    $jsonArray2 = json_decode($jsonFile1, true);
+    print_r($jsonArray2);
+    echo '<br>';
+    $jsonArray3 = json_decode($jsonFile, true);
+    print_r($jsonArray3);
+    echo '<br>';
+    echo '<br>';
+    //$result = serialize($jsonArray3, $jsonArray2);
+    $diff = array_diff(array_map('json_encode', $jsonArray2), array_map('json_encode', $jsonArray3));
+
+// Json decode the result
+    $diff = array_map('json_decode', $diff);
+    print_r($diff);
+}
+
+function key_compare_func($a, $b)
+{
+    if ($a === $b) {
+        return 0;
+    }
+    if ($a!=$b){
+        return 1;
+    }
 }
 
 
