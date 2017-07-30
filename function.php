@@ -53,5 +53,46 @@ function task1()
     }
 }
 
+function task2()
+{
+    $arr = array(
+        "numbers" => array(1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ),
+        "letters" => array('a',
+            'b',
+            'c',
+            'd'
+        )
+    );
+    //21 - измеение значений массива, сравнение, вывод в декод
+    $jsonString = json_encode($arr);
+    echo 'Файл output.json';
+    echo '<br>';
+    echo " ", json_encode($arr), "\n\n";
+    file_put_contents('output.json', $jsonString);
+    $jsonFile = file_get_contents('output.json');
+    $jsonArray = json_decode($jsonFile, true);
+    echo '<br>';
+    echo 'Файл output2.json';
+    echo '<br>';
+    $random = rand(0, 1);
+    if ($random == 1) {
+        foreach ($jsonArray as &$v1) {
+            foreach ($v1 as &$v2) {
+                $v2 = '!';
+            }
+        }
+        $jsonString = json_encode($jsonArray);
+        file_put_contents('output2.json', $jsonString);
+    }
+    $jsonFile1 = file_get_contents('output2.json');
+    echo $jsonFile1;
+}
+
 
 ?>
