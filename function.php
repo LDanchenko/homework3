@@ -158,7 +158,7 @@ function task4()
     $ch = curl_init($url);
     curl_exec($ch); // выполняем запрос curl - обращаемся к сервера php.su
     curl_close($ch);
-
+//
 
 
 }
