@@ -7,4 +7,6 @@ task2();
 //echo '<br>';
 echo '<p><b> Задание 3</b> </p>';
 task3();
+echo '<p><b> Задание 4</b> </p>';
+task4();
 ?>

@@ -152,6 +152,16 @@ function task3(){
         echo 'Сумма четных значений массива = ' . $sum;
     }
 }
+function task4()
+{
+    $url = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
+    $ch = curl_init($url);
+    curl_exec($ch); // выполняем запрос curl - обращаемся к сервера php.su
+    curl_close($ch);
+
+
+
+}
 
 
 ?>
