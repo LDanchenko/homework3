@@ -119,5 +119,39 @@ function key_compare_func($a, $b)
     }
 }
 
+function task3(){
+
+    $list = array (50);
+    $fp = fopen('test.csv', 'w');
+    for ($i=0; $i < 50; $i++) {
+        $list[$i] = rand(1, 100);
+    }
+    fputcsv($fp, $list, ',');
+    fclose($fp);
+
+    //читаем
+    $csvPath ='test.csv';
+    $csvFile = fopen($csvPath, "r");
+    if ($csvFile) { //если файл существует
+        $res = array();
+        while (($csvData = fgetcsv($csvFile, 1000, ',')) !== false) {
+            $res[] = $csvData;
+        }
+        echo '<pre>';
+        print_r($res);
+        $sum = 0;
+        echo $res[1];
+        foreach ($res as $key) {
+            foreach ($key as $value) {
+                if ($value % 2===0) {
+                    $sum += $value;
+                }
+            }
+        }
+        echo '<br>';
+        echo 'Сумма четных значений массива = ' . $sum;
+    }
+}
+
 
 ?>
