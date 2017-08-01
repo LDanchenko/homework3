@@ -84,7 +84,7 @@ function task2()
     if ($random == 1) {
         foreach ($jsonArray as &$v1) {
             foreach ($v1 as &$v2) {
-                $v2 = '!';
+                $v2 = 8;
             }
         }
         $jsonString = json_encode($jsonArray);
@@ -154,12 +154,25 @@ function task3(){
 }
 function task4()
 {
+    //инициализация
+    $ch = curl_init();
+//указываем параметры, включая url
     $url = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
-    $ch = curl_init($url);
-    curl_exec($ch); // выполняем запрос curl - обращаемся к сервера php.su
-    curl_close($ch);
-//
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
 
+// получаем HTML в качестве результата
+    $output = curl_exec($ch);
+    curl_close($ch);
+
+    preg_match('/"title":"[A-Z][a-z]*\s\w+"/', $output, $title);        // Производим поиск
+    print_r($title[0]);
+    echo '<br>';
+
+    preg_match('/"pageid":\d{8}/', $output, $pageid);
+    print_r($pageid[0]);
+    echo '<br>';
 
 }
 
